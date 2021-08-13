@@ -1,12 +1,8 @@
 package com.oppo.seckilldemo.controller;
 
-import com.oppo.seckilldemo.pojo.User;
 import com.oppo.seckilldemo.service.IUserService;
-import com.oppo.seckilldemo.utils.StringUtil;
-import com.oppo.seckilldemo.utils.ValidatorUtil;
 import com.oppo.seckilldemo.vo.LoginVo;
 import com.oppo.seckilldemo.vo.RespBean;
-import com.oppo.seckilldemo.vo.RespBeanEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

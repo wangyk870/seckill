@@ -7,13 +7,18 @@ import com.oppo.seckilldemo.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.oppo.seckilldemo.utils.MD5Util;
 import com.oppo.seckilldemo.utils.StringUtil;
+import com.oppo.seckilldemo.utils.UUIDUtil;
 import com.oppo.seckilldemo.utils.ValidatorUtil;
+import com.oppo.seckilldemo.vo.CommonVo;
 import com.oppo.seckilldemo.vo.LoginVo;
 import com.oppo.seckilldemo.vo.RespBean;
 import com.oppo.seckilldemo.vo.RespBeanEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 
 /**
  * <p>
@@ -29,6 +34,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Autowired(required = false)
     private UserMapper userMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public RespBean doLogin(LoginVo loginVo) {
@@ -59,6 +67,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             throw new GlobalException(RespBeanEnum.LOGIN_ERROR);
         }
 
-        return RespBean.success();
+        String token = UUIDUtil.uuid();
+        log.info(token);
+        //CommonVo.userInfo.put(token, mobile);
+        redisTemplate.opsForValue().set(token, user.getNickname());
+        HashMap<String, String> result = new HashMap<>();
+        result.put("token", token);
+        return RespBean.success(result);
     }
 }
