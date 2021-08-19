@@ -70,7 +70,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String token = UUIDUtil.uuid();
         log.info(token);
         //CommonVo.userInfo.put(token, mobile);
-        redisTemplate.opsForValue().set(token, user.getNickname());
+        redisTemplate.opsForValue().set(token, user);
         HashMap<String, String> result = new HashMap<>();
         result.put("token", token);
         return RespBean.success(result);

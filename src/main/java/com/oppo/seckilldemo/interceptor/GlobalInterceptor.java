@@ -1,5 +1,6 @@
 package com.oppo.seckilldemo.interceptor;
 
+import com.oppo.seckilldemo.pojo.User;
 import com.oppo.seckilldemo.utils.StringUtil;
 import com.oppo.seckilldemo.vo.CommonVo;
 import lombok.extern.slf4j.Slf4j;
@@ -36,14 +37,15 @@ public class GlobalInterceptor implements HandlerInterceptor {
             return false;
         }
         // String username = CommonVo.userInfo.get(token);
-        Object username = redisTemplate.opsForValue().get(token);
+        User user = (User)redisTemplate.opsForValue().get(token);
 
-        if(null == username){
+        if(null == user){
             log.info("token不正确，请重新登录");
             response.getWriter().print("token不正确，请重新登录");
             return false;
         }
-        log.info("【登录信息】：" + username);
+
+        log.info("【登录信息】：" + user.getNickname());
         log.info("【请求连接】：" + request.getRequestURI());
         log.info("【请求时间】：" + sdf.format(date));
 

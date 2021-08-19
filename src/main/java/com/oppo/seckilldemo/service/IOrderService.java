@@ -2,6 +2,8 @@ package com.oppo.seckilldemo.service;
 
 import com.oppo.seckilldemo.pojo.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.oppo.seckilldemo.pojo.User;
+import com.oppo.seckilldemo.vo.GoodsVo;
 
 /**
  * <p>
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-08-18
  */
 public interface IOrderService extends IService<Order> {
+
+    Order seckill(User user, GoodsVo goodsVo);
 
 }
