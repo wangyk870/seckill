@@ -4,7 +4,8 @@ spring:
   datasource:
     ##Mysql数据库配置
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://1.15.99.177:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    ##url: jdbc:mysql://1.15.99.177:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: Nenu666$
     ##连接池配置
@@ -53,3 +54,11 @@ mybatis-plus:
 logging:
   level:
     com.oppo.seckilldemo.mapper: debug
+##okhttp配置
+#ok:
+#  http:
+#    connect-time: 30
+#    read-timeout: 30
+#    write-timeout: 30
+#    max-idle-connections: 200
+#    keep-alive-duration: 300

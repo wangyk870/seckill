@@ -32,10 +32,9 @@ public class GoodsController {
 
     @RequestMapping("/toList")
     @ResponseBody
-    public JSONObject toList(User user){
+    public JSONObject toList(){
         JSONObject json = new JSONObject();
         json.put("goodsList", goodsService.findGoodsVo());
-        json.put("user", user);
         return json;
     }
 
