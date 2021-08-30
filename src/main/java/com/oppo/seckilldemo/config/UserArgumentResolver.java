@@ -34,11 +34,11 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);
         String token = request.getHeader("token");
         if(StringUtil.isEmpty(token)){
-            log.info("用户未登录");
+            //log.info("用户未登录");
             response.getWriter().print("用户未登录");
             return null;
         }
-        log.info("已登录----");
+        //log.info("已登录----");
         return (User)redisTemplate.opsForValue().get(token);
     }
 }

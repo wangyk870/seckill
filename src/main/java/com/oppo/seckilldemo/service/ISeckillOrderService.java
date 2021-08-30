@@ -2,6 +2,7 @@ package com.oppo.seckilldemo.service;
 
 import com.oppo.seckilldemo.pojo.SeckillOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.oppo.seckilldemo.pojo.User;
 
 /**
  * <p>
@@ -12,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-08-18
  */
 public interface ISeckillOrderService extends IService<SeckillOrder> {
+
+    Long getResult(User user, Long goodsId);
 
 }

@@ -30,9 +30,9 @@ public class GlobalInterceptor implements HandlerInterceptor {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
         String token = request.getHeader("token");
-        log.info(token);
+        //log.info(token);
         if(StringUtil.isEmpty(token)){
-            log.info("用户未登录");
+            //log.info("用户未登录");
             response.getWriter().print("用户未登录");
             return false;
         }
@@ -40,14 +40,14 @@ public class GlobalInterceptor implements HandlerInterceptor {
         User user = (User)redisTemplate.opsForValue().get(token);
 
         if(null == user){
-            log.info("token不正确，请重新登录");
+            //log.info("token不正确，请重新登录");
             response.getWriter().print("token不正确，请重新登录");
             return false;
         }
 
-        log.info("【登录信息】：" + user.getNickname());
-        log.info("【请求连接】：" + request.getRequestURI());
-        log.info("【请求时间】：" + sdf.format(date));
+        log.info("【请求信息】：" + user.getNickname() + " " + request.getRequestURI() + " " + sdf.format(date));
+        //log.info("【请求连接】：" + request.getRequestURI());
+        //log.info("【请求时间】：" + sdf.format(date));
 
         return true;
     }
